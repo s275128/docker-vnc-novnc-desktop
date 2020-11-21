@@ -2,14 +2,15 @@ FROM qcfe/ubuntu-vnc-novnc-desktop
 
 ARG PYCHARM_VERSION="2020.2.3"
 
-# Download Pycharm
-ADD ["https://download.jetbrains.com/python/pycharm-community-${PYCHARM_VERSION}.tar.gz", "/tmp/pycharm.tar.gz"]
+# Install wget
+RUN apt-get install wget -y
 
-# Extract Pycharm
-RUN tar xvzf /tmp/pycharm.tar.gz -C /opt/ && rm /tmp/pycharm.tar.gz
+# Download and extract Pycharm
+RUN mkdir -p /opt/pycharm && \
+    wget -qO- https://download.jetbrains.com/python/pycharm-community-${PYCHARM_VERSION}.tar.gz | tar xz --strip 1 -C /opt/pycharm
 
-# Rename dir
-RUN mv "/opt/pycharm-community-${PYCHARM_VERSION}" /opt/pycharm
+# Clean up
+RUN apt-get purge wget -y && apt-get --purge autoremove -y && apt-get autoclean -y
 
 # Copy Pycharm configuration
 COPY config $HOME/.config/
