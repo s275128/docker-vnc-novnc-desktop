@@ -24,4 +24,4 @@ COPY base /opt/base/
 # Default python project path (can be overridden with `--env PROJECT_DIR=/path/to/project/` in `docker run`)
 ENV PROJECT_DIR=$HOME/PycharmProjects/pythonProject
 
-CMD [ "/opt/base/startup.sh" ]
+CMD [ "/bin/bash", "/opt/base/startup.sh" ]
