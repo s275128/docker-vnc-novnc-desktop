@@ -1,6 +1,6 @@
 # Simple Docker container for super lightweight desktop environment
 
-Based on Ubuntu 20.04 image
+Based on Ubuntu 20.04 image and qcfe/ubuntu-vnc-novnc-desktop image
 
 ## Startup
 Build image:
