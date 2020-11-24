@@ -12,8 +12,8 @@ RUN mkdir -p /opt/pycharm && \
 # Clean up
 RUN apt-get purge wget -y && apt-get --purge autoremove -y && apt-get autoclean -y
 
-# Copy Pycharm configuration
-COPY config $HOME/.config/
+# Unpack Pycharm pre-configurations (Pycharm configuration and consent options on license and usage stats)
+ADD ["pycharm-preconf-${PYCHARM_VERSION}.tar.gz", "${HOME}"]
 
 # Set permissions
 RUN chown -R $USER:$USER $HOME
